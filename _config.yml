@@ -1,6 +1,6 @@
 # This is the default format. 
 # For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink: /:categories/:year/:month/:day/:title 
+permalink: /:categories/:year/:month/:title 
 auto: true
 pygments: true
 var:
@@ -9,14 +9,14 @@ var:
   tags_path : /tags.html
   rss_path: /atom.xml
 
-production_url : http://username.github.com # or your custom domain name
-title : Jekyll Boostrap
+production_url : http://www.bradfordembedded.com # or your custom domain name
+title : Bradford Embedded
 
 author :
-  name : Name Lastname
-  email : blah@email.test
-  github : username
-  twitter : username
-  feedbuder : feedname
+  name : Andrew Bradford
+  email : bradfa@gmail.com
+  github : bradfa
+#  twitter : username
+#  feedbuder : feedname
 
 exclude: .rbenv-version
