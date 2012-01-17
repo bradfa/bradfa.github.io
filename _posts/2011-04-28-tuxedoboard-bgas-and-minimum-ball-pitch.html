@@ -1,0 +1,18 @@
+---
+layout: post
+title: TuxedoBoard BGAs and Minimum Ball Pitch
+date: 2011-04-28
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+After some discussion with Brian and lots of reading, I've learned quite a bit more about BGAs and ball pitch.  I'm now leaning towards wanting at least 1mm ball pitch on any BGA parts used on the TuxedoBoard.  0.8mm ball pitch seems like the dividing line between being able to do a "traditional" dog bone fanout and needing to use via-in-pad.  I want to avoid doing via-in-pad if at all possible. Not all board manufacturing houses can build PCBs this way, and even those that can will charge more or have lower yield than other methods.  Even <a href="http://i.screamingcircuits.com/docs/Via_In_Pad_Guidelines.pdf">Screaming Circuits</a> would prefer to not deal with via-in-pad, although it sounds like they can.  I believe <a href="http://blog.screamingcircuits.com/2009/08/we-build-the-beagleboard.html">they built the BeagleBoards</a> but even they consider the technology used on a low cost BeagleBoard to be special.<br /><br />With 1mm ball pitch BGAs, two or three 4mil (or 3.5mil) <a href="http://www.pcdandf.com/cms/magazine/95/3760">traces can fit between vias</a>, depending on a whole slew of other parameters.  Brian warned me that some board houses can't reliably do 3mil and smaller traces, that's good to know.  For the number of pins I'm considering for the ARM SoC (in the 300 pin range), a 6 layer board should be doable with 4 routing layers and 2 power.  Now, whether 4 routing layers and 2 power is possible for the pinout, that's another question. :)<br /><br />With this in mind, a minimum of 1mm ball pitch seems the best way forward for now.  I want the design to be easy and inexpensive to manufacture at a large number of places.  In order to achieve this, microvias and via-in-pad aren't the way to go.<br /><br />Now, to pin down which SoC will be used!<br />The Freescale i.MX25 parts are 0.8mm and smaller ball pitch. :( But TI does make the <a href="http://focus.ti.com/docs/prod/folders/print/am1707.html">AM1707</a> ARM9 part with 1mm ball pitch which now looks interesting...</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Andrew</div>
+<div class='content'>
+Regarding layer count, it looks more like a 6 layer board would have 3 power planes (2 ground, 1 power) and 3 routing planes (top, bottom, and 1 inner).</div>
+</div>
+</div>

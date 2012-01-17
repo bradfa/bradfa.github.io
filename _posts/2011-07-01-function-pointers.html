@@ -1,0 +1,13 @@
+---
+layout: post
+title: Function Pointers
+date: 2011-07-01
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+Function pointers are pretty cool.  I learned about them this week, then I solved a problem using them.<br /><br />At work, I'm writing some code for a 16 bit microcontroller.  In the system I'm working with, a relatively slow external clock causes an interrupt to be fired off.  Inside my code, I have a state machine that executes each time the interrupt fires.  The state machine was implemented using a switch statement that contained a reasonable number of cases, one for each possible state.<br /><br />This worked great, up until I continued to add states.  Eventually, the time to determine which state should be executed became about half as long as the period of the external clock.  This is bad because it means some of my states may not have enough time to execute before the next interrupt comes along.  If that happens, bad things occur and the state machine loses place compared to the rest of the world.<br /><br />To solve this, I thought there had to be a way to create an array of pointers to functions.  Then as I change state - represented as an index into the array - I could just call what ever function is pointed to in the array.  It turns out, that's very possible in C.  Here's a <a href="http://www.newty.de/fpt/intro.html">good tutorial</a> I found.<br /><br />The assembly code for using an array of function pointers is much shorter than the switch statement code.  This gives me more time to execute code in between interrupts and was not hard to implement.  Each of the switch statement's cases (states) became a function and at the start of execution an array of function pointers to each function is populated.  Within the states the array index can be changed based on inputs or the result of processing data.<br /><br />Extra documentation can be very helpful when using function pointers.  A switch statement is easy to understand but an array of function pointers is a bit more opaque.</div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

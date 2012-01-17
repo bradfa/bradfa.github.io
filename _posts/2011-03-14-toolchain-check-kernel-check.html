@@ -1,0 +1,13 @@
+---
+layout: post
+title: Toolchain, Check! Kernel, Check!
+date: 2011-03-14
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+I've been working on the <a href="http://trac.cross-lfs.org/">CLFS embedded book</a> for a few months now. &nbsp;I've been learning a lot and my goal has been to get a CLFS embedded system running on my BeagleBoard-xM. I'm now one step closer!<br /><br />I've built my own toolchain using CLFS instructions currently found in <a href="http://git.cross-lfs.org/?p=abradford/clfs-embedded.git">my git repo</a>.  My toolchain consists of:<br /><ul><li>Linux Headers from 2.6.36</li><li>GMP 5.0.1</li><li>MPFR 3.0.0</li><li>MPC 0.8.2</li><li>Binutils 2.21</li><li>GCC 4.5.2</li><li>uClibc 0.9.31 (with uClibc provided patches)</li></ul><br />My kernel is from <a href="http://git.kernel.org/?p=linux/kernel/git/tmlind/linux-omap-2.6.git">tmlind's OMAP tree</a>, version 2.6.38-rc8. &nbsp;I started with the omap2plus_defconfig and modified it a little bit (although modification may not be needed, still have to check that).<br /><br />I'm using the provided xM U-Boot but with a few slight changes to the boot args and boot up sequence:<br /><ul><li>setenv console ttyO2,115200n8</li><li>mmc init ${mmcdev}</li><li>run loaduimage</li><li>run mmcboot</li></ul><br />I've made public gists of the <a href="https://gist.github.com/869016">boot console output</a> and my <a href="https://gist.github.com/869020">kernel config</a>, in case anyone is interested.<br /><br />Next step is to get the CLFS embedded filesystem up and running on my xM!<br /><br />EDIT: Thought my selection of ABI and triplets might be of interest as well:<br /><ul><li>target triplet: armv7a-unknown-linux-uclibceabi</li><li>ABI: aapcs-linux</li><li>little endian</li><li>hard float</li><li>arm mode only (no thumb instructions)</li><li>vfpv3 floating point hardware</li></ul>Also, happy Pi day!</div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

@@ -1,0 +1,13 @@
+---
+layout: post
+title: Format an SD Card with 8 MiB Aligned Partitions
+date: 2011-12-14
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+SD cards generally have 2, 4, or 8 MiB (MiB = 1024 * 1024 bytes) erase blocks and 8 KiB write pages.  Because of this, your partitions on an SD card should be aligned so that they begin and end at the edges of the erase blocks.  This, of course, assumes the SD card isn't doing address translation and sticking data where ever it wants (which the low priced ones probably aren't, the high priced ones might be).  So take this with a grain of salt :)<br /><br />If you want to create a microSD card for use with the BeagleBone that uses partitions aligned to 8MiB bounds, you can use the below script.  It's adapted from the <a href="http://elinux.org/Panda_How_to_MLO_%26_u-boot">eLinux.org Panda U-Boot instructions</a>.  It assumes you are using a microSD card that shows up as an mmc device where partitions are named /dev/mmcblk0p1 (and not a SCSI device, like some USB based SD readers do, where partitions are named /dev/sdb1).  You'll destroy all data on the microSD card and you'll end up with a 64MiB FAT partition and the rest of the device as an ext3 partition.<br /><br /><script src="https://gist.github.com/1477240.js?file=format_sd.sh"></script><br /><br />Copy your MLO and u-boot.img onto the FAT partition and boot it up!  The BeagleBone will boot this partition mapping, even though its different from TI's recommendations.  I'm using the SPL and u-boot from the <a href="http://arago-project.org/git/projects/?p=u-boot-am33x.git">Arago repo</a>.<br /><br />I'd like to build in support for determining the partition type (mmc versus SCSI) automatically, but that's not done yet.  My HP 8560w has a built in SD card reader that shows up as an mmc device.</div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

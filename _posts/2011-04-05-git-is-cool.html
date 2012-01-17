@@ -1,0 +1,13 @@
+---
+layout: post
+title: Git is Cool!
+date: 2011-04-05
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+I'm working on adding a patch to the CLFS embedded book this morning to enable soft floating point support in libgcc for ARM when used with uClibc.  I had committed the patch in my CLFS embedded git repo but with a name that wasn't really in line with other CLFS patches.  I hadn't yet pushed that commit and I wanted to change the name.<br /><br />I hadn't realized that I wanted to change the name until I started adding the new patch to the DocBook.  So now I have unstaged changes and I want to change the name of a patch file that had already been committed.  Also, having a commit that just changes the name to what it should have been in the first place seems messy to me, no reason to have two commits when one will do.<br /><br />Git makes it soooo easy!  Thank you Git developers!<br /><br />Move the file, commit that change (and only that change), stash the unstaged changes, interactively rebase to squash the name change onto the creation of the patch, pop the unstaged changes off the stash buffer, and continue with my DocBook updates!<br /><br />$ git mv incorrect-name.patch correct-name.patch<br />$ git commit -m "Corrected name"<br />$ git stash<br />$ git rebase -i HEAD~2<br />$ git stash pop<br /><br />And to think I use to administer a Subversion server and tell everyone how great that was... :)</div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

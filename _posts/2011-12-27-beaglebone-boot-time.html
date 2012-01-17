@@ -1,0 +1,13 @@
+---
+layout: post
+title: BeagleBone Boot Time
+date: 2011-12-27
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+Apparently a lot of people want to know things about BeagleBone boot time...<br />Let me know if this is covering it or if you'd like more info.  Most of my work is with <a href="http://trac.cross-lfs.org/">CLFS</a> and <a href="http://www.debian.org/">Debian</a>.<br /><br />I'm seeing about 8.5 seconds from kernel start to login prompt with a rather pared down Debian Sqeueze armel configuration and Linux 3.1.  Add about two seconds for SPL, u-boot, and kernel decompression.  Then add on the boot delay countdown (3 seconds in my case).  That gets us to about 13.5 seconds to boot.<br /><br />Let's be conservative and say 15 seconds.  Completely respectable.  Not a 1 second boot, but that's not my goal, anything under a minute is pretty good in my book.<br /><br />To give you a sense of what I'm starting at boot time for services, here's some output:<br /><br /><script src="https://gist.github.com/1523407.js?file=gistfile1.txt"></script></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

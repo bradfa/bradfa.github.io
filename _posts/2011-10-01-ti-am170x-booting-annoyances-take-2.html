@@ -1,0 +1,33 @@
+---
+layout: post
+title: TI AM170x Booting Annoyances - Take 2
+date: 2011-10-01
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+I was incorrect in some of the statements I made <a href="http://bradfordembedded.blogspot.com/2011/09/ti-am170x-booting-annoyances.html">before</a> when discussing the TI AM170x booting.  Daniel pointed out a few of my mistakes in the comments (thanks!).  This is a quick follow up.  I have quite a lot more reading and learning to do.<br /><br />The AM170x chips require an external memory attached either to EMIFA, I2C, SPI, UART, or the HPI (host port interface).  Since I want to be able to boot without requiring the UART connected, that boot method is most likely ruled out.  The HPI sounds interesting but the impression I get is that usually another processor of some sort is connected there, which the TuxedoBoard won't have.  So it's down to NOR or NAND flash on EMIFA, I2C, or SPI.  Any of those will probably work for me, even though I wanted to avoid having an external memory device.<br /><br />It turns out that the internal ROM is hard coded and not changeable.  I was under the incorrect impression that it was an EEPROM and that using Code Composer Studio that one could change it.  This is not the case.  The internal ROM is what gets executed after reset, it sets up some basic configuration registers and checks the boot mode pins.  Based on the boot mode pins, the ROM will configure the processor to access the appropriate external memory interface and load up the AIS (or non AIS boot mode) executable.  This executable holds the device configuration information along with some other setup data such as clock speeds, pin mux settings, and various other configuration registers.<br /><br />It seems like one could create an AIS (or non AIS executable) that would contain arbitrary code to be executed as a first stage bootloader but I'm not entirely clear on that yet.  If so, or if it could fetch a first stage bootloader from the external memory that could contain a custom written binary that can access the SD/MMC card.  All this together might be an end-around for booting off SD/MMC.  Uboot would then be the second stage bootloader.<br /><br />Daniel pointed out that there's a TI BSD licensed version of the <a href="http://sourceforge.net/projects/dvflashutils/">AIS generator</a> and other core boot code written in C# which should execute under <a href="http://www.mono-project.com/Main_Page">Mono</a> in Linux.  These utilities also should not require Code Composer Studio, which is handy.</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Andrew</div>
+<div class='content'>
+Brian, you&#39;re welcome :)<br /><br />Not locked into the TI AM170x parts but they are the lowest cost in the 1 to 100 quantity range that meet my (currently mostly unwritten) requirements.  Maybe I should write my requirements first... (there&#39;s an idea!)<br />Thanks for the info on the <a href="http://www.st.com/internet/mcu/product/247246.jsp" rel="nofollow">ST parts</a>.<br /><br />If I was planning on buying in the 1,000 to 10,000 quantity range, I think that&#39;d increase the number of processors that would be cost effective to include a lot of Cortex-A8 parts from many vendors.  But I&#39;m not looking at those quantities.</div>
+</div>
+<div class='comment'>
+<div class='author'>brian</div>
+<div class='content'>
+Wow thanks for the compliment.  Are you locked into using the AM170x micro?  I met with ST a few weeks ago and they have a series of nice embedded low cost processors that might be an option.  Although I am not sure what is available for open source tools.  We can talk about it next time we meet.  I will send you some info on the processor.</div>
+</div>
+<div class='comment'>
+<div class='author'>Andrew</div>
+<div class='content'>
+Bill, thanks! :)<br /><br />I saw a little about the UBL in the link that Daniel provided but I haven&#39;t yet had time to delve into it too far.  I&#39;ll also read through your wiki link.<br /><br />Thanks for the advice on SPI.  I&#39;ve been pondering using the EMIFA bus and either NOR or NAND flash but will definitely do some research on SPI parts.  SPI will probably be less complex than NOR or NAND flash.<br /><br />I&#39;m pretty new to a lot of this although I do have decent experience with embedded Linux.  I&#39;ve never designed a board from scratch nor built a bootloader.  It&#39;s all stuff I want to learn and I&#39;m trying to keep the complexity to a level that&#39;s reasonable and I figure if I share my thoughts as I go, others can learn too.  I have a friend (hi Brian!) that&#39;s experienced with board design (think 16 layer boards, 1000+ pin BGAs, and PCI-Express type experience [he&#39;s thorough and good at writing documentation, too]) giving me some advice, which is a huge help.</div>
+</div>
+<div class='comment'>
+<div class='author'>Bill M.</div>
+<div class='content'>
+&gt; It seems like one could create an AIS (or non AIS executable) that would contain arbitrary code to be executed as a first stage bootloader but I&#39;m not entirely clear on that yet. <br /><br />Yes that is pretty standard practice: use the ROM bootloader to load a small intermediate bootloader that then loads the real bootloader (u-boot).  Bootloaders are the turtles of the embedded world; Its pretty much bootloaders all the way down.<br /><br />On OMAP the intermediate bootloader is xloader.  If you checkout the links Daniel provided I think you will find another intermediate bootloader called UBL that was used on the Davinci family of parts.  <br /><br />http://processors.wiki.ti.com/index.php/RBL_UBL_and_host_program<br /><br />You could start with any of these to make your intermediate loader that would load u-boot from MMC/SD.  I would look to SPI to hold your intermediate loader as it is cheap, simple, and much faster than I2C.</div>
+</div>
+</div>

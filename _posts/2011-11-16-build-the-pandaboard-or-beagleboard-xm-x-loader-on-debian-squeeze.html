@@ -1,0 +1,23 @@
+---
+layout: post
+title: Build the PandaBoard or BeagleBoard-xM x-loader on Debian Squeeze
+date: 2011-11-16
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+EDIT 20111116 15:37: This post and the git repo have been updated to include info on the BeagleBoard-xM.<br /><br />I wrote up some quick instructions on building the PandaBoard and BeagleBoard-xM x-loader on a Debian Squeeze host this morning.  You can find them below, but also in my GitHub <a href="https://github.com/bradfa/x-loader">x-loader repo</a>.  My x-loader repo is only slightly modified from <a href="http://gitorious.org/x-loader">mainline</a>.  Enjoy!<br /><br /><br />To build x-loader on Debian:<br /><br />Install the emdebian-archive-keyring:<br />$ sudo aptitude install emdebian-archive-keyring<br /><br />Add to your apt sources:<br />deb http://www.emdebian.org/debian/ squeeze main<br /><br />Perform an aptitude update:<br />$ sudo aptitude update<br /><br />Install the Emdebian cross compilers:<br />$ sudo aptitude install gcc-4.4-arm-linux-gnueabi g++-4.4-arm-linux-gnueabi<br /><br />Install git and partitioning tools:<br />$ sudo aptitude install git parted<br /><br />Clone the repo from github, this will create a directory called "x-loader":<br />$ git clone git://github.com/bradfa/x-loader.git<br /><br />Enter the directory, make the configuration you desire, then compile the MLO<br />file (actual x-loader).  For the PandaBoard use "omap4430panda_config" and<br />for BeagleBoard-xM use "omap3530beagle_config" in the second step<br />(example uses Panda):<br />$ cd x-loader<br />$ make CROSS_COMPILE=arm-linux-gnueabi- distclean<br />$ make CROSS_COMPILE=arm-linux-gnueabi- omap4430panda_config<br />$ make CROSS_COMPILE=arm-linux-gnueabi-<br /><br />Now we'll partition and format an SDcard.<br /><br />***************************************<br />* THIS PROCESS WILL DESTROY ALL DATA! *<br />***************************************<br /><br />Make sure your SDcard is not mounted.  Then run the partitioning script to<br />create a 64 MB FAT partition followed by an ext3 partition taking up the rest<br />of the SDcard space (SDcards are slow, this may take some time).  The arugment<br />passed to the script is the device node of the SDcard itself (/dev/sdb in our <br />example), not a partition!:<br />$ sudo ./format_sd.sh /dev/sdb<br /><br />Some systems may automatically mount the newly created file systems. If not,<br />mount the boot file system:<br />$ sudo mkdir -v /mnt/boot<br />$ sudo mount /dev/sdb1 /mnt/boot<br /><br />The _VERY_FIRST_ file written to the FAT partition should be the MLO.<br />$ sudo cp -v MLO /mnt/boot/<br /><br />Unmount the FAT partition and boot the board to verify operation!</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Andrew</div>
+<div class='content'>
+Israr,<br /><br />X-loader is the MLO file.  The boot process is that internal to the ARM chip there is some ROM that executes as first stage boot laoder, it goes and grabs the MLO (second stage), runs it, and the MLO grabs and runs u-boot (third stage).  U-boot then grabs and runs the kernel and points the kernel to the file system.<br /><br />In more recent versions of u-boot (at least in TI&#39;s dev kits and the BeagleBone), the SPL is now built directly out of u-boot sources, x-loader is being depreciated.<br /><br />This sounds confusing, sorry.</div>
+</div>
+<div class='comment'>
+<div class='author'>israr</div>
+<div class='content'>
+hi andrew!!<br />    is x-loader is replacement of Uboot in BeagleBoard or <br />it sits above Uboot ? plz explain, thanks<br /><br />Israr</div>
+</div>
+</div>

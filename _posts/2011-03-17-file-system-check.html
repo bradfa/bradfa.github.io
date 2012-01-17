@@ -1,0 +1,13 @@
+---
+layout: post
+title: File System - Check!
+date: 2011-03-17
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+I've gotten an Embedded <a href="http://cross-lfs.org/view/clfs-embedded/arm/">CLFS</a> system running on my BeagleBoard-xM!<br />I made a <a href="https://gist.github.com/874183">public gist of the boot-up</a>.<br /><br />I'm still using the supplied U-Boot so I'm not using the automated "bootcmd", but that's shortly coming up on my list of things to fix (along with getting a few microSD cards).  I've put my kernel (that was <a href="http://bradfordembedded.blogspot.com/2011/03/toolchain-check-kernel-check.html">built before</a> and uses no modules) in the first FAT partition on the microSD card and then created a 1GB ext3 partition as the 3rd partition, which is where my root file system lives.  In order to boot I use the following U-Boot commands:<br /><ul><li>setenv console ttyO2,115200n8</li><li>mmc init ${mmcdev}</li><li>setenv mmcroot /dev/mmcblk0p3 rw</li><li>run loaduimage</li><li>run mmcboot</li></ul><br />When booted, the system's only using about 8MB of RAM according to 'top', which isn't half bad.  Granted, it's not doing anything useful yet, but that's a nice starting place.  My system doesn't have networking yet, but that's next up on the to do list along with an SSH server.<br /><br />In order to get this far, I've made some changes that aren't yet in the Embedded CLFS book.  I've opened Trac tickets that document the issues and I'll be updating the book soon (hopefully this weekend).</div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

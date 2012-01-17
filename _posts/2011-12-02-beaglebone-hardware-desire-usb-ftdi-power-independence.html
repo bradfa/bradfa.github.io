@@ -1,0 +1,23 @@
+---
+layout: post
+title: BeagleBone Hardware Desire - USB & FTDI Power Independence
+date: 2011-12-02
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+Now that I've got my BeagleBone, I'm still not happy :)<br /><br />I'd like to be able to plug the USB cable into my host PC but not have the board power up.  Since the USB cable is now also the serial cable, I'd like to have a few seconds after plugging the USB cable to get my serial port terminal up and running so I can watch the x-loader and u-boot data from a cold boot.  Based on my read through the schematics, this isn't possible by just removing a resistor or a simple hack.  I could probably cut some traces and solder up some jumpers, but it will look messy and I'm not sure it's worth the time, yet.<br /><br />It would be nice to have the option of the micro USB connector's power only going to the USB hub and FTDI chip.  That way, when USB is plugged to the host PC, the serial port can be set up before the ARM core boots.  Then when DC power is applied to the 5V input, the ARM core and all other circuits would be powered and boot would occur.  This would be behavior similar to how the BeagleBoard and BeagleBoard-xM work with their "real" serial ports.  I could connect my serial term before boot.<br /><br />I realize I can just push the rest button to get a glimpse of the x-loader and u-boot messages, but that's not what I want.  The things I'm going to be building on my BeagleBone will have a rather quick boot (although nothing like the 1 second stuff) and while doing development, I'd like to be able to see the messages scroll.  It's also not always a good idea to hit the hard reset button once Linux has mounted the file systems and started services (ext3/4 have journaling but it's still not a good thing to do often).<br /><br />I'm not sure of the official procedure for requesting hardware changes for the BeagleBoards, but I'll probably stop by the Google Group and post this request there, as well.<br /><br />EDIT 20111208 6:40am: I sent in a <a href="http://groups.google.com/group/beagleboard/browse_thread/thread/328a9c693b646816#">message to the BeagleBoard Google Group</a> yesterday describing this.</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Andrew</div>
+<div class='content'>
+Jadon, will do.  Thanks!<br /><br />Based on my reading of the schematics, it looks like the main power controller (TPS65217) takes input both from the USB 5V and the external adapter 5V.  Output is the 3.3V used for both the ARM SoC as well as the FTDI.  On my quick look, my power scheme would require an additional DC-DC converter to drop the USB 5V to 3.3V for the FTDI in order to get independence.<br /><br />The interesting part, it seems, from looking at the schematics is that the USB hub is powered from the mini-USB connector&#39;s 5V and never from the external adapter&#39;s 5V (which makes sense since it&#39;s only used when mini-USB is connected).  It occurred to me (before your comment) that my desire most likely was taken into consideration but was dropped because the normal use case couldn&#39;t justify the extra cost (both board space and $).</div>
+</div>
+<div class='comment'>
+<div class='author'>Jadon</div>
+<div class='content'>
+Some thought was put into doing exactly what you are suggesting, where there was a way to keep the FTDI portion powered separately and to enable the rest to be powered by a USB controlled switch or the 5V adapter.  I know it seems a bit nickel and dime, but it was seen as being too expensive/complex to implement effectively.<br /><br />What is there is:<br />a) the ability to control the RESET line via the USB and <br />b) you can hold the reset button until the USB serial comes up.<br /><br />We wanted to initially hold the chip in reset until the serial port became active when powered by USB, but it didn&#39;t work out either.  I understand this is a care-about and you might be able to propose a solution that is suitable.  It is just that we didn&#39;t want any solution that was complex or interfered with a more typical, less-experienced user.  Of course, without users like yourself, we wouldn&#39;t be able to address the needs of the less-experienced users, so please do share on the Google Group your suggestion.</div>
+</div>
+</div>

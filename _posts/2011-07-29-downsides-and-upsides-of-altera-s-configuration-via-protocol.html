@@ -1,0 +1,13 @@
+---
+layout: post
+title: Downsides and Upsides of Altera's Configuration Via Protocol
+date: 2011-07-29
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+Yesterday, I wrote a little about <a href="http://bradfordembedded.blogspot.com/2011/07/modular-fpga-accelerated-computing.html">reconfigurable FPGAs</a> attached to the PCI-Express bus as an addition to the general purpose computer.  The idea revolves around being able to reconfigure an FPGA over PCI-Express without requiring a PCI reset (basically a reboot).  In this way, as processing demands change on the host computer, the FPGA can be configured to process data in the most effective way.<br /><br />The huge upside of being able to reconfigure an FPGA over PCI-Express is that there's no external programmer (such as Altera's USB Blaster) involved.  The hardware needed to perform a configuration is all built into the FPGA and embedded in the operating system drivers running on the computer.  This ability really opens up the possibility of having a large number of FPGAs connected over PCI-Express and configuring each one individually, quickly, and when ever you want.<br /><br />On the downside, the initial configuration that is loaded into the FPGA at boot time sets the I/O interfaces up for each pin and can't be changed.  This is fine, if you don't care about I/O customization.  I'm envisioning a system where this isn't a large issue because the FPGAs would only be used for data processing, not for interfacing to I/O outside of the PCI-Express bus and a minimal set of devices located on the same circuit board.<br /><br />Another downside is that currently only the Cyclone V, Arria V, and Stratix V FPGAs from Altera support configuration via protocol over PCI-Express.  Cyclone V is the most attractive as the Cyclone family usually is lower cost than Arria and Stratix.  Cyclone V doesn't appear to be available yet for public consumption which makes cost estimation difficult for those who don't have a standing relationship with Altera (myself included).  The Cyclone IV has been available for a while, includes hard IP for PCI-Express 1.0, and is reasonably priced but Altera doesn't support configuration via protocol for that family.<br /><br />Overall, for developing a PCI-Express reconfigurable FPGA system, the upsides strongly outweigh the downsides.  I'm very excited about configuration via protocol!</div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

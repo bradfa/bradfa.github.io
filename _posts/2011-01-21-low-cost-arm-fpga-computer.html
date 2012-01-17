@@ -1,0 +1,18 @@
+---
+layout: post
+title: Low Cost ARM + FPGA Computer?
+date: 2011-01-21
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+What if there was a low cost, small, power efficient ARM processor based computer with a reasonable FPGA attached to it?&nbsp; I'm thinking 600 MHz ARM Cortex with an Altera Cyclone4.&nbsp; What if this board could be powered by <a href="http://en.wikipedia.org/wiki/Power_over_Ethernet">Power over Ethernet (PoE)</a>?&nbsp; What if the ARM processor could reprogram the FPGA over JTAG?<br /><br />As long as the interface between the ARM and FPGA was fast enough, the types of things this computer could do would be rather vast.&nbsp; Some computations are much faster in "dedicated" silicon (an FPGA isn't really dedicated silicon, but for the money it's close enough) than in general purpose processors.&nbsp; For example, crypto processing is dramatically faster in "dedicated" silicon than in a general purpose processor.<br /><br />What if you could have 47 of these little ARM + FPGA computers plugged into a 48 port PoE switch? (Or 15 in a 16 port switch?)&nbsp; The switch would power them and allow them to communicate.&nbsp; A desktop PC could coordinate the operations of the boards and feed each one the data for computations.&nbsp; It'd basically be a mini cluster of FPGAs that could scale and be affordable.&nbsp; It'd also be easy to wire compared to normal computers as there's only one wire per ARM + FPGA computer (the Ethernet cord provides both communications and power).&nbsp; And if you can't afford to buy a lot of nodes, you can just buy a few and expand when you can afford it.&nbsp; And if newer versions come out, you can add them to your cluster.<br /><br />There's lots of software out there to coordinate clusters of computers, this is nothing new.&nbsp; But currently a lot of the crypto busting computing power that's available comes as PCI-e cards with very expensive FPGAs attached.&nbsp; There's also the problem of scaling a PCI-e based solution, once you run out of PCI-e slots, you need another expensive computer, and you'll still need coordination software and expensive networking if you have more than one PC.<br /><br />If the ARM + FPGA computer could cost around $100, come with great documentation and <a href="http://en.wikipedia.org/wiki/Free_software">libre licenses</a> for the software and FPGA code, plus offer professional support, I wonder if anyone would buy it...</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Andrew</div>
+<div class='content'>
+An ARM processor like TI&#39;s <a href="http://focus.ti.com/docs/prod/folders/print/am3505.html" rel="nofollow">AM3505</a> 600 MHz Cortex-A8 that costs $13.75 (USD) in quantities of 1000 (or $22 in qty of 1), has an Ethernet MAC, USB, SPI, DDR2 controller, and comes in a 1mm pitch BGA package, would be awesome for this computer.<br /><br />Throw 1 GB of DDR2, an Ethernet PHY, and a quality FPGA on there and we&#39;re off to the races! :)</div>
+</div>
+</div>

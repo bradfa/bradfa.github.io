@@ -1,0 +1,13 @@
+---
+layout: post
+title: SanDisk iNAND
+date: 2011-12-07
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+I stumbled upon <a href="http://www.sandisk.com/business-solutions/inand-embedded-flash-drives">SanDisk's iNAND</a> products today while doing some searching about SD cards.  The iNAND idea looks very appealing to me compared to raw flash from a board design perspective.  Since iNAND looks just like a MMC device, you can hook up to it with a 4 or 8 bit data bus and your total useful pin count can stay around 11 pins, not counting power, ground, and decoupling caps for internally derived voltages.  In terms of keeping pin count down, that's awesome!<br /><br />Then, looking what appears to have been a leaked preliminary data sheet for an older version of the current iNAND devices, the speed is pretty good, and internally there's 512 byte pages, wear leveling, TRIM support, and a host of other features required in demanding storage applications (like industrial or smart phones).<br /><br />I assume the controller internals are very similar to those found in SanDisk's high end SD cards, and so using iNAND may not give much of a performance difference.  But in some cases, a removable SD card is a liability and soldered down memory would be preferred, such as if people might steal it or in environments with high vibration.<br /><br />The only drawback I see is with the lack of removability.  Either SanDisk needs to program your desired initial data into the iNAND at time of purchase, or you need a fixture to interface the iNAND on your own manufacturing line and engineering work bench.  Not a big deal if you have the resources and design the board it mounts to correctly.  And then if you create a situation where the board is unbootable (I'm looking at you, in the field software upgrades), you'll need either the fixture or a JTAG device, just like raw flash.<br /><br />I don't know the costs associated with each iNAND family but I do have a request into SanDisk sales to get more info and data sheets.  Not sure I'll be able to share that data, but if I am, I will.<br /><br />UPDATE 20111208 1:45pm - After more research, the iNAND family of devices are a type of <a href="http://en.wikipedia.org/wiki/MultiMediaCard#eMMC">eMMC device</a>.  Basically it's MMC but in a soldered down package, usually BGA.  Another handy bit is when developing hardware that will eventually use eMMC, you can lay down the footprint for both the eMMC device and a normal microSD card connector and only populate the one you wish to use (eMMC in production, microSD in development).</div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

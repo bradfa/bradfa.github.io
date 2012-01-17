@@ -1,0 +1,33 @@
+---
+layout: post
+title: My Embedded Cross Linux From Scratch Git Repo
+date: 2011-01-29
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+I was maintaining a Git repository that mirrored the embedded CLFS book's master and my own changes on <a href="https://github.com/bradfa/clfs-embedded">github</a> but I've now got <a href="http://git.cross-lfs.org/?p=abradford/clfs-embedded.git;a=summary">my own repo</a> on the actual CLFS server.&nbsp; If you'd like to follow it, feel free.<br /><br />Clone the book from my repo:<br />$ git clone git://git.cross-lfs.org/abradford/clfs-embedded.git<br /><br />Build instructions to make the book into HTML and other formats are included.&nbsp; For the impatient, create the HTML version:<br />$ make BASEDIR=<i>[where you want them to go]</i><br /><br />Check out the <a href="http://trac.cross-lfs.org/">main CLFS page</a> and participate on the <a href="http://trac.cross-lfs.org/wiki/lists#MailingLists">mailing lists</a> if you have issues.<br /><br />EDIT: If you'd like to simply browse my repo via a webbrowser, check out:<br />&nbsp;<a href="http://git.cross-lfs.org/?p=abradford/clfs-embedded.git">http://git.cross-lfs.org/?p=abradford/clfs-embedded.git</a></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>israr</div>
+<div class='content'>
+ok...fine i got it andrew. now i will start right from scratch from your&#39;s book , let&#39;s hope that i can do it, because, in online book i m stuck at GCC-final build.it is so frustrating .Anways , thanks a lot for reply andrew.</div>
+</div>
+<div class='comment'>
+<div class='author'>Andrew</div>
+<div class='content'>
+israr, the main difference between my repository and the main repository or the online edition of the book is that mine usually contains a few additional updates.  Every so often, my changes will get pulled into the main book.<br /><br />You can see the difference between my repository and the main repository by looking at the git log.  If you view the web version of my repo&#39;s git log, the &quot;mainline&quot; branch is the current mainline book.  My book is at the &quot;master&quot; branch.  Everything in between is how my repo is different.<br /><br />Link to my repo:<br /><a href="http://git.cross-lfs.org/?p=abradford/clfs-embedded.git" rel="nofollow">http://git.cross-lfs.org/?p=abradford/clfs-embedded.git</a></div>
+</div>
+<div class='comment'>
+<div class='author'>israr</div>
+<div class='content'>
+hello andrew !...another night gone to make it HTML..but succeded .<br />  Now 1 question:<br />-&gt; Is there any significant difference in your book and   <br />   clfs&#39;s, apart from some packages are latest</div>
+</div>
+<div class='comment'>
+<div class='author'>israr</div>
+<div class='content'>
+hello Andrew!<br />  could u please guide me , hwere i can get the BOOK in HTML/PDF format.I spent my whole night installing, <br />If you want to convert the XML to HTML, install the following components:<br />* libxml2 * libxslt * DocBook DTD * DocBook XSL  <br />* HTMLTidy * lynx * JDK * FOP and JAI<br /> some of them installed in ubuntu10.10 by [apt-get],but<br />some are not.thanks in advance,please help.</div>
+</div>
+</div>

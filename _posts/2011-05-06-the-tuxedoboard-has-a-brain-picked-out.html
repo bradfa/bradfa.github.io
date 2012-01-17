@@ -1,0 +1,38 @@
+---
+layout: post
+title: The TuxedoBoard has a Brain! (picked out)
+date: 2011-05-06
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+I've chosen an ARM SoC (system on chip) for the TuxedoBoard!  The Texas Instruments <a href="http://focus.ti.com/docs/prod/folders/print/am1707.html">AM1707</a> ARM9 core will meet my requirements.<br /><br />The AM1707 is a 456-MHz ARM926EJ-S SoC that has an internal Ethernet MAC, multiple UARTs (serial ports), an external memory interface for a 32 bit wide SDRAM bus supporting up to 256MB RAM, an external NOR flash memory interface multiplexed with an SD card controller, USB, an LCD interface, and a few other interesting features.<br /><br />In keeping with the stated goals for the TuxedoBoard project, the schematic capture and layout will be done with <a href="http://www.lis.inpg.fr/realise_au_lis/kicad/">Kicad</a>.  Kicad supports both Windows and Linux and is covered by the GPLv2 license.  I'm currently using the 20100314 release as that's what comes with Debian 6.<br /><br />I'm in the process of creating the schematic symbols for the AM1707.  I'm new to Kicad and I was not able to find an already made symbol with a permissive license, so this is taking a little time.  I've made the power symbol and the EMIF_A (external NOR flash / SD card interface) symbol.  Some pretty pictures of what I've got so far:<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-E9u55OK94TI/TcPQQMCZbpI/AAAAAAAAAMw/3gz37OglG5k/s1600/AM1707_PWR_symbol.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="400" src="http://3.bp.blogspot.com/-E9u55OK94TI/TcPQQMCZbpI/AAAAAAAAAMw/3gz37OglG5k/s400/AM1707_PWR_symbol.png" width="174" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-07VOo7CIwHE/TcPQVLZYU6I/AAAAAAAAAM4/Z9d1b6ZRAnU/s1600/AM1707_EMIF_A_symbol.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="187" src="http://2.bp.blogspot.com/-07VOo7CIwHE/TcPQVLZYU6I/AAAAAAAAAM4/Z9d1b6ZRAnU/s400/AM1707_EMIF_A_symbol.png" width="400" /></a></div></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Charles</div>
+<div class='content'>
+It&#39;d be pretty fantastic to see that expanded outward to an easily modified (say I wanted to use a cortex-9 processor), extendable (maybe I want to include a distinct graphics chipset), and upgradable open module. <br /><br />Then again, I&#39;m just a coder, I&#39;ll leave the circuit stuff to you guys.</div>
+</div>
+<div class='comment'>
+<div class='author'>Andrew</div>
+<div class='content'>
+Charles, yes, I saw that the other day.  Looks like an interesting concept.  In order to hit that price point, they&#39;re going to have to build a heck of a lot of them.  I haven&#39;t read extensively about that project, but it&#39;s currently unclear to me if they&#39;re using open source tools to do the design and how open they&#39;re going to be about the hardware once it&#39;s out.  Regardless, I hope they succeed.  The world can only get better when there&#39;s more low cost embedded development kits :)</div>
+</div>
+<div class='comment'>
+<div class='author'>Charles</div>
+<div class='content'>
+Andrew, you seen this yet:<br /><br />http://www.geekosystem.com/raspberry-pi-25-dollar-pc/<br /><br />Not sure if it applies to what you&#39;re doing, but the two projects sounded similar enough that i thought i&#39;d point it out.</div>
+</div>
+<div class='comment'>
+<div class='author'>Andrew</div>
+<div class='content'>
+Yeah.  I&#39;m also going to make 3D files for the parts.  Kicad supports integration of Wings 3D models and can render the board.  I just think it looks cool.  Probably will end up being a lot of work :)</div>
+</div>
+<div class='comment'>
+<div class='author'>brian</div>
+<div class='content'>
+Just think you are going to have to make the parts in the layout tool as well.  It might not be as bad as it sounds.  If they have a similar part you can just work from that.  You may have already know that.  Good job :)</div>
+</div>
+</div>

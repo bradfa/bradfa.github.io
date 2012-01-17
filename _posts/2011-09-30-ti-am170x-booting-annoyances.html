@@ -1,0 +1,33 @@
+---
+layout: post
+title: TI AM170x Booting Annoyances
+date: 2011-09-30
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+Although I haven't spent much time working on the TuxedoBoard in the past few months (newborn daughter in July), I've been thinking about it again recently as my sleep schedule is starting to normalize a bit.<br /><br />In reading through the info from TI about <a href="http://www.ti.com/lit/an/spraba4b/spraba4b.pdf">boot modes on the AM17xx</a> processors, a lot of time is spent describing the AIS (Application Image Script) proprietary boot script system.  It's proprietary to TI, the script generator only runs on Windows, and it requires that you pay for and use <a href="http://www.ti.com/tool/ccstudio">Code Composer Studio</a>.  None of that sounds exciting to someone interested in open platforms.<br /><br />So, if the AM170x processor is going to go onto the TuxedoBoard, there's going to have to be a custom bootloader.<br /><br />Ideally, I would want a bootloader that doesn't require an external memory interface (either EMIFA, SPI, or I2C) due to the added cost and complexity.  I'm imagining that there will be an MMC/SD card on the TuxedoBoard in order to hold the Linux filesystem, so booting directly off of that would be best.  The BeagleBoard-xM boots off the MMC/SD card but its processor has internal firmware (not sure on the details) that is smart enough to find a FAT partition (if its the first one) and grab the <a href="http://groups.google.com/group/beagleboard/browse_thread/thread/33e7b0fd61a313f0?pli=1">MLO (x-loader)</a> file (if its the first file loaded onto the partition).<br /><br />I'd like it if my bootloader can setup the external SDRAM, set up all registers properly, find the MMC/SD card, transfer uboot (or other second stage bootloader) into RAM and jump to it.  Kind of like the BeagleBoard-xM does it.  There's 64kB of ROM and 8kB of RAM inside the AM170x ARM core.  I'm not sure if that's enough but coming from a 8/16-bit microcontroller perspective, that's decent for doing quite a lot.  It seems possible (even if it will be a lot of work).<br /><br />It'd be awesome if the first partition on the MMC/SD card could be ext2 (or other open and less complex filesystem) and have only the uboot executable.  The second partition (in your favorite, supported by uboot, format) would hold the actual Linux filesystem.<br /><br />UPDATE 1 October 2011: I'm incorrect in some of the things stated in this blog post.  I've not changed them but I have written <a href="http://bradfordembedded.blogspot.com/2011/10/ti-am170x-booting-annoyances-take-2.html">another blog post</a>.</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Andrew</div>
+<div class='content'>
+Bill, thanks for the info, I&#39;ll take a further look at the XDS100 emulator.  I also did not know that CCS runs on Linux, that&#39;s very helpful.  I&#39;ll be sure to check that out.<br /><br />I&#39;ve also updated some of the statements I made in this post in my follow on update (see link at bottom of post) but I&#39;ve not changed my misunderstandings in this post because it&#39;s useful for others to see how I&#39;m wrong and read the comments and my second post.</div>
+</div>
+<div class='comment'>
+<div class='author'>Bill M.</div>
+<div class='content'>
+&gt; and it requires that you pay for and use Code Composer Studio. <br /><br />Daniel already pointed out that Code Composer Studio is not required to use the boot code and AIS.  I would also like to point out that CCS is free (as in Beer) to use with an XDS100 emulator.  These are available from TI for $79 and other vendors sell even cheaper clones.  There is an XDS100 reference design so you can even build your own if you are so inclined.<br /><br />An XDS100 is not blazing fast but it is useful to have JTAG debug when bringing up a new board and this is a pretty cheap way to go.  Best of all CCSv5 now runs on Linux in addition to Windows.</div>
+</div>
+<div class='comment'>
+<div class='author'>Andrew</div>
+<div class='content'>
+Daniel, interesting.  Thanks for the info!  I&#39;ll have to check out the sourceforge project you linked to.<br /><br />I was slightly confused about the 64kB of ROM, since I was under the impression that the AIS went into, but now that you mention it...  So I guess I need to do more reading. :)</div>
+</div>
+<div class='comment'>
+<div class='author'>Daniel</div>
+<div class='content'>
+&gt;&gt; It&#39;s proprietary to TI, the script generator only runs on Windows, and it requires that you pay for and use Code Composer Studio.<br /><br />True, it is proprietary (but fully described in the mentioned doc). The GUI script generator should run on Linux under Mono (it&#39;s a .Net app).  I haven&#39;t tried it in a while, but it should.  Plus there is a command line version, also written in C# .Net, with full source available (BSD licensed) as part of the flash and boot utilities package: http://sourceforge.net/projects/dvflashutils/files/OMAP-L137/<br /><br />And code composer studio is not required to create AIS boot images. The executables you feed the AIS generator could be created using TI&#39;s codegen tools, or they could be created using GCC.<br /><br />&gt;&gt; There&#39;s 64kB of ROM and 8kB of RAM inside the AM170x ARM core. I&#39;m not sure if that&#39;s enough but coming from a 8/16-bit microcontroller perspective, that&#39;s decent for doing quite a lot.<br /><br />The 64KB ROM is not user programmable - that ROM contains the primary boot loader that can load the AIS images from various interfaces. Unfortunately, one interface that is not natively supported is SD/MMC. So a secondary loader on some natively supported interface (like a SPI flash) will be required to fetch uboot from an SD/MMC card (unless TI updates the ROM and releases a new version of the chip with this support).</div>
+</div>
+</div>

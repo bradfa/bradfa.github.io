@@ -1,0 +1,13 @@
+---
+layout: post
+title: Dithering, NVIDIA Quadro 1000M, and HP ZR2440w
+date: 2011-11-30
+comments: false
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+My new laptop is an HP Elitebook Workstation 8560w.  It's sweet and <a href="http://bradfordembedded.blogspot.com/2011/11/debian-6-amd64-on-hp-elitebook.html">well supported by Debian 6</a>.  I also have a HP ZR2440w monitor, also sweet.<br /><br />For some reason, with the NVIDIA proprietary drivers, version 290.10 with a 2.6.38 backports kernel on Debian Squeeze, when ever I have the monitor connected via DisplayPort, the NVIDIA driver turns on dithering for the external display.  This is not what I want.<br /><br />The HP ZR2440w is an 8 bit monitor, it doesn't need dithering, and with dithering enabled some colors flicker which is very annoying.  The built in LCD on the Elitebook is only 6 bits and so dithering can help make it look like there's a wider color gamut.<br /><br />To disable dithering on my ZR2440w but keep it enabled on the built-in LCD, my "Screen" section of my /etc/X11/xorg.conf looks like this (DFP-0 is the internal LCD, DFP-6 is the ZR2440w, and I have them mirrored so I only use the ZR2440w when it's connected):<br /><br /><script src="https://gist.github.com/1409045.js?file=xorg.conf"></script><br /><br />With this config, now my ZR2440w is always non-dithered while the internal LCD always is dithered.</div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>
