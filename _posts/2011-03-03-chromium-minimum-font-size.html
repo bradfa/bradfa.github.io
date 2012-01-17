@@ -5,7 +5,7 @@ date: 2011-03-03
 comments: false
 ---
 
-<h1>{{ page.title }}</h1>
+
 <div class='post'>
 I've recently switched to using Chromium. &nbsp;I liked Firefox / Iceweasel but it has gotten a bit slower over time and Chromium is now faster for the places I visit on the web. &nbsp;Also, all the plugins I use on Firefox / Iceweasel are now available on Chromium (mainly Adblock Plus and Xmarks).<br /><br />But one thing I was missing, that Firefox / Iceweasel had, was an easy way to set the minimum font size through the GUI settings panel. &nbsp;Firefox / Iceweasel makes it easy, just pick the smallest font size you want from a drop down menu where you pick your default fonts. &nbsp;Chromium (at least the version that ships with Debian 6) doesn't have a menu choice to set this and the default was causing some pages I visit to have smaller fonts than I desired. &nbsp;And I don't like having to zoom.<br /><br />But the fix is easy!<br />Simply open up your ~/.config/chromium/Default/Preferences file and in the "webkit" section, add these two lines (make sure Chromium is not running when you both open and save the file):<br /><br />"minimum_font_size": 14,<br />"minimum_logical_font_size": 14<br /><br />You can substitute your favorite minimum font size for the 14 I've chosen. &nbsp;Next time you start Chromium, fonts won't be smaller than 14! :)</div>
 <h2>Comments</h2>

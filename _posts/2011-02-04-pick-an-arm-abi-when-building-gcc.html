@@ -5,7 +5,7 @@ date: 2011-02-04
 comments: false
 ---
 
-<h1>{{ page.title }}</h1>
+
 <div class='post'>
 If you follow the <a href="http://cross-lfs.org/view/clfs-embedded/arm/">CLFS embedded book for ARM</a>, you'll see that your ABI choice isn't used until compiling packages (ie: after you've built a cross-GCC).&nbsp; What you will also find is that if you want to use the aapcs-linux ABI (EABI) and you choose your target triplet to be arm-unknown-linux-uclibc (like the book says) that you'll have issues.<br /><br />Your issues will begin with configuring e2fsprogs using the $BUILD variable and will look like this:<br />error: FPA is unsupported in the AAPCS<br /><br />That's a very unhelpful error message.  What you want it to tell you is why the heck the configure script decided to use FPA and AAPCS together if they obviously don't work.<br /><br />What happened was you chose your target triplet to be a triplet that GCC's configure thinks uses the OABI, but now you're building some software and telling GCC to use the EABI.  Rather than spit out "Hey, you built GCC with the OABI and now you're trying to use the EABI!" it just complains about FPA.<br /><br />To solve this, if you plan to use the EABI, set your target triplet to be arm-unknown-linux-uclibcgnueabi.  Then when you build GCC, pass it the --with-abi=aapcs-linux switch.  This will produce a GCC that builds for the EABI.<br /><br />This caused me quite a few hours of banging my head on my keyboard.  The <a href="http://buildroot.uclibc.org/">Buildroot</a> people know this, and it's included in their build scripts, but searching Google was not very helpful.</div>
 <h2>Comments</h2>
