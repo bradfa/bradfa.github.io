@@ -6,8 +6,6 @@ pygments: true
 markdown: rdiscount
 var:
   archive_path: /archive.html
-  categories_path : /categories.html
-  tags_path : /tags.html
   rss_path: /atom.xml
 
 production_url : http://www.bradfordembedded.com # or your custom domain name
@@ -15,7 +13,7 @@ title : Bradford Embedded
 
 author :
   name : Andrew Bradford
-  email : bradfa@gmail.com
+  email : andrew@bradfordembedded.com
   github : bradfa
 #  twitter : username
 #  feedbuder : feedname
