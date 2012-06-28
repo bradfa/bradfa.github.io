@@ -1,4 +1,4 @@
---
+---
 layout: post
 title: A Few Debian Notes (live, wicd, and encfs)
 date: 2012-06-28
