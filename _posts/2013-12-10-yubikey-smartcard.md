@@ -70,5 +70,13 @@ will do your SSH auth for you (look Ma, no more private keys on disk!):
 
     ssh -v user@example.com
 
+If you don't yet have your public SSH key, get it by finding the identifier for
+your authentication key and using the last 4 bytes as the ID (ie: auth key
+identifier of D69A905F):
+
+    gpgkey2ssh D69A905F
+
+You can upload the output of that to Github or your server you'll SSH to.
+
 [1]: https://www.yubico.com/2012/12/yubikey-neo-openpgp/
 [2]: https://github.com/Yubico/yubikey-personalization/blob/master/70-yubikey.rules
