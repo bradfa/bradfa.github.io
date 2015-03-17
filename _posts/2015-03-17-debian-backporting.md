@@ -16,7 +16,7 @@ defining `DEBSIGN_KEYID=` or be sure to pass the proper key identification
 switches to `dpkg-buildpackage` or `debsign` as needed later.
 
 Get the sources from Debian testing by adding the testing repo to your
-`/etc/apt/sources.list.d directory (just a `deb-src` line as you probably don't
+`/etc/apt/sources.list.d` directory (just a `deb-src` line as you probably don't
 want to actually install packages from testing on your stable).  Then do an
 `apt-get update`.  Then you can get the sources from testing with an `apt-get
 source $PKGNAME=$VERSION` to get the sources for a given version.
