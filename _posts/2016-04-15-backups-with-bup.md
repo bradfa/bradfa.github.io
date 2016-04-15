@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Exact Steps: Backups with bup to a USB disk
+title: Exact Steps - Backups with bup to a USB disk
 date: 2016-04-15
 comments: false
 ---
