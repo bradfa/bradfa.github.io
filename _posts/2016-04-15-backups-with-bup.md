@@ -19,7 +19,7 @@ a luks key on my machine(s) (such as I could encrypt a luks key with gnupg using
 my Yubikey NEO to do the encryption so as to avoid storing a plaintext luks key
 on my disk).
 
-But regardless, here's my exact steps for getting started with dup:
+But regardless, here's my exact steps for getting started with bup:
 
 1. Mount hard disk to /mnt/usb (you are strongly encouraged to use luks
 encryption on this disk!)
