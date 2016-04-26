@@ -5,6 +5,9 @@ date: 2016-04-15
 comments: false
 ---
 
+**EDIT: bup backups to a remote location don't exactly work as you'd expect (I
+learned this the hard way) so take these steps with a grain of salt**
+
 I recently learned about the [bup](https://github.com/bup/bup) backup tool!
 It's pretty neat.  It stores backups like git does, but deals with big files in
 a fairly efficient way.
