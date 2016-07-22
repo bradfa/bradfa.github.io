@@ -80,3 +80,20 @@ You can upload the output of that to Github or your server you'll SSH to.
 
 [1]: https://www.yubico.com/2012/12/yubikey-neo-openpgp/
 [2]: https://github.com/Yubico/yubikey-personalization/blob/master/70-yubikey.rules
+
+
+**EDIT to add on 20160722:**
+
+For modern Debian systems, you'll want to install gpgsm, gnupg-agent,
+pinentry-gtk2, yubikey-personalization, and scdaemon packages.  You won't need
+to setup the udev rules yourself, they come with yubikey-personalization.
+
+If you need to use an alternative port for SSH (such as if you are behind a
+firewall), you can make a `~/.ssh/config` file containing something like this to
+SSH to said host on an alternate port:
+
+```
+Host github.com
+  Hostname ssh.github.com
+  Port 443
+```
