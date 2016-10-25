@@ -1,7 +1,7 @@
 # This is the default format. 
 # For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink: /:categories/:year/:month/:title 
-pygments: true
+permalink: /:categories/:year/:month/:title
+highlighter: rouge
 var:
   archive_path: /archive.html
   rss_path: /atom.xml
