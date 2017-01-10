@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Going Deep?
-date: 2017-01-11
+date: 2017-01-10
 comments: false
 ---
 
