@@ -43,8 +43,8 @@ at the end of October 2017.  Overall, I'm pretty happy with my decision.
 
 [lgg5rs988]: http://www.lg.com/us/cell-phones/lg-RS988-Silver-g5-unlocked
 
-The LG G5 is a 2016 flagship phone that was launched in the first quarter of
-2016.  It has a Snapdragon 820 SoC (2x Cortex-A7x-like cores and 2x
+The LG G5 is a 2016 flagship phone that was launched in the first quarter of 2016.
+It has a Snapdragon 820 SoC (2x Cortex-A7x-like cores and 2x
 Cortex-A53-like cores) which is decently powerful, 4 GB of RAM which is still
 quite good in late 2017, 32 GB of flash, an SD card slot, and a fairly highly
 rated camera for when it was released.  The LG G5 originally came with Android
