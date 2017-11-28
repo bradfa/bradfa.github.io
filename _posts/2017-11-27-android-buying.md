@@ -53,8 +53,8 @@ and is expected to probably get Android Oreo soon.
 
 The RS988 is carrier unlocked and has good support for the frequencies used by
 Verizon, AT&T, and T-Mobile in the USA.  When I first received the phone I used
-it on [Ting][ting]'s T-Mobile MVNO network and it worked fine although service
-at my house was less than stellar.  I've since switched to [AT&T][att]'s prepaid
+it on [Ting's][ting] T-Mobile MVNO network and it worked fine although service
+at my house was less than stellar.  I've since switched to [AT&T's][att] prepaid
 service and get very good service at my house but less than stellar service at
 work.  My lesson learned here is that mobile phone provider coverage maps lie
 and one must actually test each provider's coverage in the areas which matter to
@@ -62,6 +62,9 @@ you.  Verizon, based on coworkers' phones, has good coverage at my office but
 my company is moving in the spring to a new building so I'll likely stick with
 AT&T for now.  I really liked Ting, they have great customer service and decent
 prices, but T-Mobile's network is lacking where I live.
+
+[ting]: https://ting.com/
+[att]: https://www.att.com/prepaid/index.html
 
 The RS988 has an easy to replace battery.  You power off the phone, hold the top
 securely in one hand while depressing a small button, and then slide the bottom
