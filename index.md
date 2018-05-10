@@ -12,12 +12,8 @@ My Open Source Hardware projects are on the [Bradford Embedded Github page][1].
 
 You can find me on [LinkedIn][2].  Please feel free to connect!
 
-I also have a website which lists my [small accomplishments][3] which I started
-in 2017.
-
 [1]: https://github.com/bradfordembedded
 [2]: http://www.linkedin.com/in/bradfa
-[3]: http://bradfa.gitlab.io
 
 ## Blog Posts
 
