@@ -97,3 +97,9 @@ Host github.com
   Hostname ssh.github.com
   Port 443
 ```
+
+**EDIT to add on 20190110:**
+
+On what's now a modern Debian system, you'll also need to install the
+dbus-user-session package to get proper prompting for pinentry through the
+agents.
