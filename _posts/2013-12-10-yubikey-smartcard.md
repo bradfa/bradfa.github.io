@@ -103,3 +103,23 @@ Host github.com
 On what's now a modern Debian system, you'll also need to install the
 dbus-user-session package to get proper prompting for pinentry through the
 agents.
+
+
+**EDIT to add on 20250206:**
+
+If using Gnome on Debian bookworm, then gnome-keyring will attempt to "help" by
+running its own ssh-agent for you.  This will probably get in your way and be
+annoying.  To resolve this, prevent gnome-keyring from running its ssh helper
+when you login by not autostarting it:
+
+```
+mkdir -pv ~/.config/autostart
+cp /etc/xdg/autostart/gnome-keyring-ssh.desktop ~/.config/autostart/
+echo "X-GNOME-Autostart-enabled=false" >> ~/.config/autostart/gnome-keyring-ssh.desktop
+```
+
+Then log out and log back in or reboot.
+
+Based on some googling, it seems that Gnome changes how this works in newer
+releases (around version 46) and then the "gcr" helper may take over being
+annoying in this way.
