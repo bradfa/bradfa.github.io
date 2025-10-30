@@ -123,3 +123,36 @@ Then log out and log back in or reboot.
 Based on some googling, it seems that Gnome changes how this works in newer
 releases (around version 46) and then the "gcr" helper may take over being
 annoying in this way.
+
+
+**EDIT to add on 20251030:**
+
+For Debian Trixie here's what you need to do:
+
+```
+$ sudo apt install gpgsm gnupg-agent dbus-user-session \
+                   pinentry-gtk2 scdaemon yubikey-personalization
+```
+
+Then configure things for your user:
+
+```
+$ echo "use-agent" >> ~/.gnupg/gpg.conf
+$ echo "enable-ssh-support" >> ~/.gnupg/gpg-agent.conf
+```
+
+And because there's some possible changes to how CICD drivers work in the
+Trixie version of gnupg, you likely will need to tell scdaemon to use the
+external pcscd instead of what it thinks are the right way to access USB keys:
+
+```
+echo "disable-ccid" >> ~/.gnupg/scdaemon.conf
+```
+
+Then you can fetch your public key or setup a new set of keys like normal.
+
+For exporting the ssh public key, use:
+
+```
+$ gpg --export-ssh-key <Key-ID>
+```
