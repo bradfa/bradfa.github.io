@@ -127,7 +127,7 @@ annoying in this way.
 
 **EDIT to add on 20251030:**
 
-For Debian Trixie here's what you need to do:
+For Debian Trixie here's the full list of what you need to do:
 
 ```
 $ sudo apt install gpgsm gnupg-agent dbus-user-session \
@@ -141,12 +141,15 @@ $ echo "use-agent" >> ~/.gnupg/gpg.conf
 $ echo "enable-ssh-support" >> ~/.gnupg/gpg-agent.conf
 ```
 
-And because there's some possible changes to how CICD drivers work in the
-Trixie version of gnupg, you likely will need to tell scdaemon to use the
-external pcscd instead of what it thinks are the right way to access USB keys:
+If you might have other smart cards connected to your PC, like SmartCard-HSM or
+Nitrokey HSM devices, then you should restrict gnupg's scdaemon to only trying
+to interface to your Yubikey device.  Kill scdaemon, connect your Yubikey (and
+ideally remove all other smart card devices), then get the scdaemon name for
+your Yubikey and add it to the gnupg scdaemon config, like:
 
 ```
-echo "disable-ccid" >> ~/.gnupg/scdaemon.conf
+$ gpgconf --kill scdaemon
+$ echo reader-port \"$(echo scd getinfo reader_list | gpg-connect-agent --decode | awk '/^D/ {print $2}')\" >> ~/.gnupg/scdaemon.conf
 ```
 
 Then you can fetch your public key or setup a new set of keys like normal.
